@@ -1,99 +1,130 @@
 import React, { Component } from 'react';
+
+// import LightWorldMap from './lightWorldMap';
+// import DarkWorldMap from './darkWorldMap';
+import Tracker from './tracker';
+import Timer from './timer';
+import LayoutToggles from './layoutToggles';
+import Basic from '../fonts/Basic-Regular.ttf';
 import November from '../fonts/November-Regular.ttf';
 import RobotoRegular from '../fonts/Roboto-Regular.ttf';
 import RobotoMedium from '../fonts/Roboto-Medium.ttf';
 
-const styles = <style jsx global>{`
-  @font-face {
-    font-family: 'Roboto';
-    font-weight: 400;
-    src: url('${RobotoRegular}') format('truetype');
-  }
-
-  @font-face {
-    font-family: 'Roboto';
-    font-weight: 600;
-    src: url('${RobotoMedium}') format('truetype');
-  }
-
-  @font-face {
-    font-family: 'November';
-    font-weight: 400;
-    src: url('${November}') format('truetype');
-  }
-
-  * {
-    margin: 0px;
-    border: 0px;
-    padding: 0px;
-  }
-
-  html, body {
-    height: 100%;
-  }
-
-  body {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Roboto', sans-serif;
-    color: #FFFFFF;
-  }
-
-  #root {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-`}</style>;
-
 export default class Container extends Component {
   render() {
-    const urlParams = new URLSearchParams(this.props.location.search);
-    const backgroundColor = (urlParams.get('background') !== null) ? `#${urlParams.get('background')}` : 'transparent';
-
     return (
       <div className="container">
         <div className="shown">
+          <img className="logo" src="public/images/logo-large.png" alt="Logo" />
+          <hr />
+          <Tracker dimension={ this.props.match.params.dimension } />
+          <hr />
 
+          <div>
+            <img className="go-mode" src="public/images/items/gomode.png" height="24" alt="Go Mode" />
+          </div>
+
+          <Timer />
         </div>
 
         <div className="not-shown">
-
+          {/* <LightWorldMap />
+          <DarkWorldMap /> */}
         </div>
 
-        { styles }
+        <LayoutToggles />
 
         <style jsx global>{`
+          @font-face {
+            font-family: 'Roboto';
+            font-weight: 400;
+            src: url('${RobotoRegular}') format('truetype');
+          }
+
+          @font-face {
+            font-family: 'Roboto';
+            font-weight: 600;
+            src: url('${RobotoMedium}') format('truetype');
+          }
+
+          @font-face {
+            font-family: 'November';
+            font-weight: 400;
+            src: url('${November}') format('truetype');
+          }
+
+          @font-face {
+            font-family: 'Basic';
+            font-weight: 400;
+            src: url('${Basic}') format('truetype');
+          }
+
+          * {
+            margin: 0px;
+            border: 0px;
+            padding: 0px;
+          }
+
+          html, body, #root {
+            height: 100%;
+          }
+
+          body, #root {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+          }
+
           body {
-            background-color: ${backgroundColor};
+            font-family: 'Roboto', sans-serif;
+            color: #FFFFFF;
+            background-color: #000000;
+          }
+
+          img {
+            image-rendering: pixelated;
           }
         `}</style>
 
         <style jsx>{`
           .container {
             position: relative;
-            width: 86px;
-            height: 513px;
+            width: 100%;
+            height: 100%;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            align-content: center;
-            justify-content: space-between;
+
+            .shown,
+            .not-shown {
+              position: relative;
+              display: flex;
+              flex-direction: column;
+              height: 100%;
+            }
 
             .shown {
-              background: yellow;
-              width: 50px;
-              height: 50px;
+              box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 2px 0 rgba(0,0,0,.12);
+              background: #212121;
+              width: 248px;
+              z-index: 1;
+              user-select: none;
+
+              .logo {
+                width: 100%;
+                padding: 8px;
+                box-sizing: border-box;
+              }
+
+              hr {
+                height: 1px;
+                margin: 0 8px;
+                background: rgba(255, 255, 255, 0.03);
+              }
             }
 
             .not-shown {
-              background: red;
-              width: 50px;
-              height: 50px;
+              flex: 1;
+              background: #303030;
             }
           }
         `}</style>

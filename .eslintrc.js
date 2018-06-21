@@ -9,9 +9,10 @@ module.exports = {
       devDependencies: [ '**/*.test.js', './webpack.*js' ]
     }],
     'import/no-named-as-default': [0],
-    'indent': ["error", 2, { "MemberExpression": 1, 'SwitchCase': 1 }],
+    'indent': ['error', 2, { 'MemberExpression': 1, 'SwitchCase': 1 }],
     'max-len': 'off',
     'no-underscore-dangle': 0,
+    'object-curly-newline': ['error', { 'multiline': true, 'minProperties': 10, 'consistent': true }],
     'react/jsx-uses-react': 2,
     'react/jsx-uses-vars': 2,
     'react/prefer-stateless-function': 'off',
